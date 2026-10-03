@@ -152,16 +152,20 @@
  "products": [
   {
    "id": "p1791047652207",
-   "name": "Açaí 200ml",
+   "name": "Açaí 300ml",
    "cat": "c1",
-   "desc": "",
+   "desc": "Açaí simples e saboroso",
    "ing": "",
    "obs": "",
    "price": 18.99,
-   "img": "",
+   "img": "img/1791048699054.jpg",
    "stock": 70,
    "sizes": [],
-   "groups": [],
+   "groups": [
+    "fr",
+    "co",
+    "cm"
+   ],
    "sec": [
     "mais"
    ]
