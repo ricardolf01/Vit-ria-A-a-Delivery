@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#2d0a4e"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&display=swap" rel="stylesheet"><title>Vitória Açaí Delivery</title><style>
+:root{--d:#2d0a4e;--p:#7b2ff7;--k:#ff2d95}
+*{box-sizing:border-box;margin:0}
+body{font:15px/1.4 system-ui,sans-serif;background:#faf6ff;color:#2a2236;padding-bottom:80px}
+button{font:inherit;cursor:pointer;border:0}button:disabled{opacity:.5}
+a{color:inherit}
+header{position:sticky;top:0;z-index:5;background:linear-gradient(90deg,var(--d),var(--p));color:#fff;padding:10px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+header button{background:none;color:#fff;font-size:24px;position:relative}
+#logo{font-weight:800;font-size:18px}
+#q{grid-column:1/4;border-radius:24px}
+#cb{position:absolute;top:-4px;right:-8px;background:var(--k);font-size:11px;border-radius:10px;padding:1px 6px}
+input,textarea,select{width:100%;padding:11px 14px;border:1px solid #dccbf7;border-radius:10px;font:inherit;background:#fff;color:inherit;margin:2px 0}
+input[type=checkbox],input[type=radio]{width:auto}
+.wrap,main{max-width:1000px;margin:auto;padding:14px}
+h2{margin:18px 0 10px;color:var(--d)}h4{margin:14px 0 6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px #7b2ff71a;display:flex;flex-direction:column;cursor:pointer}
+.card h3{font-size:15px;padding:8px 10px 0}.card p{font-size:12px;color:#6b6280;padding:2px 10px;flex:1}
+.pr{display:flex;justify-content:space-between;align-items:center;padding:8px 10px 10px;gap:6px;flex-wrap:wrap}
+.pr strong{color:var(--p)}
+.pr button,.cta{background:linear-gradient(90deg,var(--p),var(--k));color:#fff;border-radius:20px;padding:9px 16px;font-weight:700}
+.ph{aspect-ratio:1.3;background:linear-gradient(135deg,#e9d8ff,#ffd3ea);display:grid;place-items:center;position:relative;font-size:44px}
+.ph img{width:100%;height:100%;object-fit:cover}.ph i{font-style:normal}
+.so{position:absolute;top:8px;left:8px;background:#000b;color:#fff;font-size:12px;padding:3px 9px;border-radius:10px}
+#bn{position:relative;height:170px;overflow:hidden;background:var(--d)}
+.sl{position:absolute;inset:0;padding:30px max(20px,calc(50% - 480px));color:#fff;background:linear-gradient(120deg,var(--d),var(--p) 60%,var(--k)) center/cover;opacity:0;transition:opacity .6s;display:flex;flex-direction:column;justify-content:center}.sl.on{opacity:1}
+.sl h1{font-size:26px;max-width:600px}
+#menu{position:fixed;top:0;bottom:0;left:0;width:260px;background:#fff;z-index:20;transform:translateX(-100%);transition:.25s;padding:16px;overflow:auto}#menu.on{transform:none}
+#menu h3{color:var(--d);margin-bottom:8px}#menu a{display:block;padding:12px 6px;border-bottom:1px solid #f0e7fb;cursor:pointer}
+#ov{position:fixed;inset:0;background:#0006;z-index:15;display:none}#ov.on{display:block}
+#sheet{position:fixed;inset:0;z-index:30;background:#fff;overflow:auto;display:none}#sheet.on{display:block}
+.sh{max-width:700px;margin:auto;padding-bottom:90px;position:relative}
+.x{position:absolute;top:10px;left:10px;z-index:2;background:#fff;border-radius:50%;width:40px;height:40px;font-size:20px;box-shadow:0 2px 8px #0003}
+.big{aspect-ratio:1.5;font-size:80px}.pad{padding:14px}.pad small{display:block;color:#6b6280;margin-top:4px}
+.opt{display:flex;align-items:center;gap:8px;padding:10px 4px;border-bottom:1px solid #f0e7fb}.opt em{margin-left:auto;font-style:normal;color:var(--p);font-weight:600}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;box-shadow:0 -2px 12px #0002;padding:10px 14px;display:flex;gap:12px;align-items:center;justify-content:space-between;z-index:31}
+.bar .cta{flex:1;padding:13px}
+.qty{display:flex;align-items:center;gap:10px}.qty button{width:32px;height:32px;border-radius:50%;background:#f0e7fb;color:var(--p);font-size:18px}
+.ci{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #f0e7fb}.ci>div:first-child{flex:1}
+#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--d);color:#fff;padding:10px 18px;border-radius:20px;opacity:0;pointer-events:none;transition:.3s;z-index:50}#toast.on{opacity:1}
+.rv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.rc{background:#fff;border-radius:14px;padding:14px}
+footer{background:var(--d);color:#fff;padding:24px 14px;text-align:center;line-height:1.9}
+.box{background:#fff;border-radius:14px;padding:14px;margin:12px 0;display:grid;gap:10px}
+.f{display:grid;gap:4px;font-size:13px}.chk{display:flex;flex-wrap:wrap;gap:4px 14px}.chk label{display:flex;gap:6px;align-items:center}
+.tabs{display:flex;gap:6px;overflow:auto;padding:4px 0}.tabs button{padding:9px 14px;border-radius:20px;background:#fff;white-space:nowrap;font-weight:600}.tabs .on{background:var(--p);color:#fff}
+.del{background:#ffe5ec;color:#c4002f;border-radius:10px;padding:9px}
+#lg{max-width:380px;margin:60px auto}
+
+body.adm>:not(#app){display:none}
+.ic{flex:none}
+header button:not(.cta){width:40px;height:40px;display:grid;place-items:center}
+.x{display:grid;place-items:center}
+.cta{font-size:15px}
+.del{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.ph i{color:#b690ee;font-style:normal;display:grid}
+#logo,.lgo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px}
+.mk{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#ff2d95,#ff8cc6);color:#fff;box-shadow:0 3px 10px #0004;flex:none}
+.mk svg{width:25px;height:25px}
+.nm b{display:block;font:800 24px/.95 'Baloo 2',system-ui,sans-serif;letter-spacing:-.3px}
+.nm small{display:block;font:600 12px/1.2 'Baloo 2',system-ui,sans-serif;letter-spacing:.09em;opacity:.9}
+h2,h3,.sl h1,.pr strong{font-family:'Baloo 2',system-ui,sans-serif}
+#menu a{display:flex;align-items:center;gap:10px}
+footer p{display:flex;justify-content:center;align-items:center;gap:8px}
+.st{display:flex;gap:2px;color:#ffb020}
+*{-webkit-tap-highlight-color:transparent}
+button,.card,#menu a,.opt,.x,.tabs button{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+button:focus,a:focus{outline:none}
+button:focus-visible,a:focus-visible{outline:2px solid var(--k);outline-offset:2px}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--p)}
+html.lk,html.lk body{overflow:hidden}
+#menu,#sheet{overscroll-behavior:contain}
+</style></head>
+<body>
+<header><button onclick="mn(1)" aria-label="Menu" data-i="menu"></button><span id="logo"></span><button onclick="cartV()" aria-label="Sacola" data-i="bag"><span id="cb">0</span></button><input id="q" type="search" placeholder="Buscar açaí, bolo, ingrediente..." oninput="Q=this.value;render()"></header>
+<nav id="menu"></nav><div id="ov" onclick="mn(0)"></div>
+<div id="bn"></div><main id="main"></main><section id="extra"></section><div id="sheet"></div><div id="toast"></div>
+<div id="app"></div>
+<script>
+const DEF={
+ "config": {
+  "name": "Vitória Açaí Delivery",
+  "slogan": "O melhor açaí da região",
+  "whatsapp": "5521979946790",
+  "address": "Lagoinha - São Gonçalo - RJ",
+  "hours": "Segunda a Domingo, das 14h às 19h",
+  "about": "Vitória Açaí Delivery é especializada em açaís, sobremesas e produtos artesanais, oferecendo qualidade, sabor e rapidez na entrega.",
+  "instagram": "",
+  "hideSoldOut": false
+ },
+ "categories": [
+  {
+   "id": "c1",
+   "name": "Açaí Tradicional"
+  },
+  {
+   "id": "c2",
+   "name": "Açaí Premium"
+  },
+  {
+   "id": "c3",
+   "name": "Açaí Gourmet"
+  },
+  {
+   "id": "c4",
+   "name": "Cremes"
+  },
+  {
+   "id": "c5",
+   "name": "Sorvetes"
+  },
+  {
+   "id": "c6",
+   "name": "Milk-shakes"
+  },
+  {
+   "id": "c7",
+   "name": "Bolos"
+  },
+  {
+   "id": "c8",
+   "name": "Tortas"
+  },
+  {
+   "id": "c9",
+   "name": "Doces"
+  },
+  {
+   "id": "c10",
+   "name": "Promoções"
+  }
+ ],
+ "banners": [
+  {
+   "img": "",
+   "title": "O melhor açaí da região",
+   "text": "Monte o seu e peça pelo WhatsApp"
+  },
+  {
+   "img": "",
+   "title": "Promoções do dia",
+   "text": "Confira as ofertas de hoje"
+  }
+ ],
+ "groups": [
+  {
+   "id": "fr",
+   "name": "Frutas",
+   "max": 0,
+   "items": [
+    {
+     "n": "Morango",
+     "p": 2
+    },
+    {
+     "n": "Banana",
+     "p": 1.5
+    },
+    {
+     "n": "Kiwi",
+     "p": 2.5
+    },
+    {
+     "n": "Uva",
+     "p": 2
+    },
+    {
+     "n": "Manga",
+     "p": 2
+    }
+   ]
+  },
+  {
+   "id": "co",
+   "name": "Coberturas",
+   "max": 0,
+   "items": [
+    {
+     "n": "Leite Condensado",
+     "p": 2
+    },
+    {
+     "n": "Nutella",
+     "p": 4
+    },
+    {
+     "n": "Ovomaltine",
+     "p": 3
+    },
+    {
+     "n": "Paçoca",
+     "p": 2
+    },
+    {
+     "n": "Granulado",
+     "p": 1.5
+    },
+    {
+     "n": "Calda de Chocolate",
+     "p": 1.5
+    }
+   ]
+  },
+  {
+   "id": "cm",
+   "name": "Complementos",
+   "max": 0,
+   "items": [
+    {
+     "n": "M&M",
+     "p": 4
+    },
+    {
+     "n": "Oreo",
+     "p": 3
+    },
+    {
+     "n": "Bis",
+     "p": 3
+    },
+    {
+     "n": "KitKat",
+     "p": 4
+    },
+    {
+     "n": "Kinder Bueno",
+     "p": 5
+    },
+    {
+     "n": "Bombom",
+     "p": 3
+    }
+   ]
+  }
+ ],
+ "products": [
+  {
+   "id": "p1",
+   "name": "Açaí Tradicional",
+   "cat": "c1",
+   "desc": "Açaí cremoso batido na hora.",
+   "ing": "Açaí, guaraná",
+   "obs": "",
+   "price": 0,
+   "img": "",
+   "stock": 99,
+   "sizes": [
+    {
+     "n": "300ml",
+     "p": 14
+    },
+    {
+     "n": "500ml",
+     "p": 20
+    },
+    {
+     "n": "700ml",
+     "p": 26
+    },
+    {
+     "n": "1L",
+     "p": 34
+    }
+   ],
+   "groups": [
+    "fr",
+    "co",
+    "cm"
+   ],
+   "sec": [
+    "mais"
+   ]
+  },
+  {
+   "id": "p2",
+   "name": "Açaí Premium",
+   "cat": "c2",
+   "desc": "Mais cremoso, com leite em pó.",
+   "ing": "Açaí, guaraná, leite em pó",
+   "obs": "",
+   "price": 0,
+   "img": "",
+   "stock": 99,
+   "sizes": [
+    {
+     "n": "300ml",
+     "p": 17
+    },
+    {
+     "n": "500ml",
+     "p": 23
+    },
+    {
+     "n": "700ml",
+     "p": 29
+    },
+    {
+     "n": "1L",
+     "p": 37
+    }
+   ],
+   "groups": [
+    "fr",
+    "co",
+    "cm"
+   ],
+   "sec": [
+    "mais",
+    "combo"
+   ]
+  },
+  {
+   "id": "p3",
+   "name": "Açaí Gourmet",
+   "cat": "c3",
+   "desc": "Açaí com creme de ninho e frutas.",
+   "ing": "Açaí, creme de ninho, frutas",
+   "obs": "",
+   "price": 0,
+   "img": "",
+   "stock": 99,
+   "sizes": [
+    {
+     "n": "300ml",
+     "p": 19
+    },
+    {
+     "n": "500ml",
+     "p": 25
+    },
+    {
+     "n": "700ml",
+     "p": 31
+    },
+    {
+     "n": "1L",
+     "p": 39
+    }
+   ],
+   "groups": [
+    "fr",
+    "co",
+    "cm"
+   ],
+   "sec": [
+    "novo"
+   ]
+  },
+  {
+   "id": "p4",
+   "name": "Monte Seu Açaí",
+   "cat": "c1",
+   "desc": "Escolha o tamanho e capriche nos adicionais.",
+   "ing": "Açaí, guaraná",
+   "obs": "",
+   "price": 0,
+   "img": "",
+   "stock": 99,
+   "sizes": [
+    {
+     "n": "300ml",
+     "p": 14
+    },
+    {
+     "n": "500ml",
+     "p": 20
+    },
+    {
+     "n": "700ml",
+     "p": 26
+    },
+    {
+     "n": "1L",
+     "p": 34
+    }
+   ],
+   "groups": [
+    "fr",
+    "co",
+    "cm"
+   ],
+   "sec": [
+    "monte"
+   ]
+  },
+  {
+   "id": "p5",
+   "name": "Milk-shake de Ninho",
+   "cat": "c6",
+   "desc": "Gelado e cremoso, 400ml.",
+   "ing": "Sorvete, leite, leite ninho",
+   "obs": "",
+   "price": 16,
+   "img": "",
+   "stock": 99,
+   "sizes": [],
+   "groups": [
+    "co"
+   ],
+   "sec": [
+    "promo"
+   ]
+  },
+  {
+   "id": "p6",
+   "name": "Bolo de Chocolate",
+   "cat": "c7",
+   "desc": "Fatia generosa com cobertura.",
+   "ing": "Chocolate, ovos, farinha",
+   "obs": "",
+   "price": 12,
+   "img": "",
+   "stock": 99,
+   "sizes": [],
+   "groups": [],
+   "sec": [
+    "novo"
+   ]
+  },
+  {
+   "id": "p7",
+   "name": "Torta de Limão",
+   "cat": "c8",
+   "desc": "Fatia de torta gelada.",
+   "ing": "Limão, leite condensado, biscoito",
+   "obs": "",
+   "price": 10,
+   "img": "",
+   "stock": 99,
+   "sizes": [],
+   "groups": [],
+   "sec": [
+    "combo"
+   ]
+  }
+ ],
+ "reviews": [
+  {
+   "n": "Cliente",
+   "t": "Muito bom, chegou rápido.",
+   "s": 5
+  },
+  {
+   "n": "Cliente",
+   "t": "O melhor açaí da região.",
+   "s": 5
+  }
+ ]
+};
+const IC={menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',bag:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',back:'<path d="M19 12H5M12 19l-7-7 7-7"/>',trash:'<path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v5M14 11v5"/>',lock:'<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',wa:'<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/>',pin:'<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>',clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',ig:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/>',star:'<path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/>',home:'<path d="M3 11 12 3l9 8v10H3z"/><path d="M9 21v-6h6v6"/>',cog:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',bowl:'<path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M7 12c0-3 2-5 5-5s5 2 5 5"/><path d="M9 21h6"/>'};
+const ic=(n,s=20)=>`<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="${n=='star'?'currentColor':'none'}" stroke="${n=='star'?'none':'currentColor'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]}</svg>`;
+const MK='<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="15" r="5.2"/><circle cx="7" cy="11.5" r="3.3"/><circle cx="17" cy="11.5" r="3.3"/><path d="M12 9.5C11.5 5.5 14 3 18 3c0 4-2.5 6.5-6 6.5z"/></svg>';
+const logo=n=>{const[a,...r]=n.split(' ');return `<span class="mk">${MK}</span><span class="nm"><b>${a.replace(/[&<>"]/g,'')}</b><small>${r.join(' ').replace(/[&<>"]/g,'')}</small></span>`};
+const $=s=>document.querySelector(s),R=v=>'R$ '+(+v).toFixed(2).replace('.',','),E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SEC={mais:'Mais Vendidos',promo:'Promoções',novo:'Novidades',combo:'Combinações Favoritas',monte:'Monte Seu Açaí'};
+let D,cat=null,Q='',cur,sel,tm,cart=JSON.parse(localStorage.cart||'[]'),I={nm:'',ad:'',pg:'Pix'};
+const left=p=>p.stock===''||p.stock==null?99:+p.stock,
+from=p=>p.sizes?.length?Math.min(...p.sizes.map(s=>s.p)):+p.price,
+cn=id=>D.categories.find(c=>c.id==id)?.name||'',
+pic=p=>p.img?`<img src="${E(p.img)}" alt="${E(p.name)}" loading="lazy">`:'<i>'+ic('bowl',54)+'</i>',
+sv=()=>{localStorage.cart=JSON.stringify(cart);$('#cb').textContent=cart.reduce((a,i)=>a+i.n,0)},
+lk=()=>document.documentElement.classList.toggle('lk',$('#menu').classList.contains('on')||$('#sheet').classList.contains('on')),
+mn=o=>{$('#menu').classList.toggle('on',!!o);$('#ov').classList.toggle('on',!!o);lk()},
+go=c=>{cat=c;Q='';$('#q').value='';mn(0);render();scrollTo(0,0)},
+cs=()=>{$('#sheet').classList.remove('on');lk()},
+toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)};
+
+function card(p){const o=left(p)<=0;return `<div class="card" onclick="openP('${p.id}')"><div class="ph">${pic(p)}${o?'<b class="so">Esgotado</b>':''}</div><h3>${E(p.name)}</h3><p>${E(p.desc)}</p><div class="pr"><strong>${p.sizes?.length?'a partir de ':''}${R(from(p))}</strong><button ${o?'disabled':''}>${o?'Esgotado':'Comprar'}</button></div></div>`}
+
+function render(){let ps=D.products.filter(p=>!(D.config.hideSoldOut&&left(p)<=0)),h='';
+ if(Q||cat){const k=Q.toLowerCase();ps=ps.filter(p=>(!cat||p.cat==cat)&&(!k||[p.name,p.ing,cn(p.cat)].join(' ').toLowerCase().includes(k)));
+  h=`<h2>${Q?'Resultados':E(cn(cat))}</h2><div class="grid">${ps.map(card).join('')||'<p>Nenhum produto encontrado.</p>'}</div>`}
+ else{for(const k in SEC){const s=ps.filter(p=>p.sec?.includes(k));if(s.length)h+=`<h2>${SEC[k]}</h2><div class="grid">${s.map(card).join('')}</div>`}
+  const r=ps.filter(p=>!p.sec?.length);if(r.length)h+=`<h2>Cardápio</h2><div class="grid">${r.map(card).join('')}</div>`}
+ $('#main').innerHTML=h;$('#bn').style.display=Q||cat?'none':''}
+
+function openP(id){cur=D.products.find(p=>p.id==id);sel={s:0,a:{},n:1};const p=cur,o=left(p)<=0;
+ $('#sheet').innerHTML=`<div class="sh"><button class="x" onclick="cs()">${ic('back',22)}</button><div class="ph big">${pic(p)}</div><div class="pad"><h2>${E(p.name)}</h2><p>${E(p.desc)}</p>${p.ing?`<small><b>Ingredientes:</b> ${E(p.ing)}</small>`:''}${p.obs?`<small><b>Observações:</b> ${E(p.obs)}</small>`:''}
+${p.sizes?.length?`<h4>Tamanho</h4>${p.sizes.map((s,i)=>`<label class="opt"><input type="radio" name="sz" ${i?'':'checked'} onchange="sel.s=${i};tot()">${E(s.n)}<em>${R(s.p)}</em></label>`).join('')}`:''}
+${(p.groups||[]).map(grp).join('')}
+<h4>Observações do pedido</h4><textarea id="ob" placeholder="Ex: sem granola"></textarea></div>
+<div class="bar"><div class="qty"><button onclick="qn(-1)">−</button><b id="qn">1</b><button onclick="qn(1)">+</button></div><button class="cta" ${o?'disabled':''} onclick="addC()">${o?'Esgotado':'Adicionar à Sacola · <span id="tt"></span>'}</button></div></div>`;
+ $('#sheet').classList.add('on');lk();tot()}
+
+function grp(id){const g=D.groups.find(x=>x.id==id);if(!g)return'';return `<h4>${E(g.name)}${g.max?` (até ${g.max})`:''}</h4>${g.items.map((it,i)=>`<label class="opt"><input type="checkbox" onchange="tg('${id}',${i},this)">${E(it.n)}<em>${it.p?'+ '+R(it.p):'grátis'}</em></label>`).join('')}`}
+function tg(g,i,el){const G=D.groups.find(x=>x.id==g),a=sel.a[g]=sel.a[g]||{};a[i]=el.checked;if(G.max&&Object.values(a).filter(Boolean).length>G.max){a[i]=el.checked=false;toast('Máximo de '+G.max+' em '+G.name)}tot()}
+function unit(){const p=cur;let u=p.sizes?.length?p.sizes[sel.s].p:+p.price,n=[];(p.groups||[]).forEach(id=>{const g=D.groups.find(x=>x.id==id);Object.entries(sel.a[id]||{}).forEach(([i,on])=>{if(on){u+=+g.items[i].p;n.push(g.items[i].n)}})});return[u,n]}
+function tot(){const t=$('#tt');if(t)t.textContent=R(unit()[0]*sel.n)}
+function qn(d){sel.n=Math.max(1,Math.min(left(cur),sel.n+d));$('#qn').textContent=sel.n;tot()}
+function addC(){const[u,a]=unit(),p=cur;cart.push({id:p.id,name:p.name,size:p.sizes?.[sel.s]?.n,add:a,obs:$('#ob').value.trim(),u,n:sel.n});sv();cs();toast('Adicionado à sacola')}
+
+function cartV(){const t=cart.reduce((a,i)=>a+i.u*i.n,0);
+ $('#sheet').innerHTML=`<div class="sh"><button class="x" onclick="cs()">${ic('back',22)}</button><div class="pad"><h2 style="margin-left:48px">Sua Sacola</h2>${cart.map((i,k)=>`<div class="ci"><div><b>${E(i.name)}${i.size?' '+E(i.size):''}</b><small>${E(i.add.join(', '))}${i.obs?' · Obs: '+E(i.obs):''}</small><strong>${R(i.u*i.n)}</strong></div><div class="qty"><button onclick="cq(${k},-1)">−</button><b>${i.n}</b><button onclick="cq(${k},1)">+</button></div><button class="del" onclick="cq(${k},-99)">${ic('trash',18)}</button></div>`).join('')||'<p>Sua sacola está vazia.</p>'}
+<h4>Seus dados</h4><input placeholder="Nome" value="${E(I.nm)}" oninput="I.nm=this.value"><input placeholder="Endereço completo" value="${E(I.ad)}" oninput="I.ad=this.value"><select onchange="I.pg=this.value">${['Pix','Cartão','Dinheiro'].map(x=>`<option ${I.pg==x?'selected':''}>${x}`).join('')}</select><div id="wf" style="margin-top:14px"></div></div>
+<div class="bar"><b>Total: ${R(t)}</b><button class="cta" ${cart.length?'':'disabled'} onclick="send()">Finalizar no WhatsApp</button></div></div>`;
+ $('#sheet').classList.add('on');lk()}
+function cq(k,d){const i=cart[k],p=D.products.find(x=>x.id==i.id);i.n=Math.min(i.n+d,p?left(p):99);if(i.n<=0)cart.splice(k,1);sv();cartV()}
+
+let WM='';
+function cp(){const t=document.createElement('textarea');t.value=WM;document.body.appendChild(t);t.select();try{document.execCommand('copy');toast('Pedido copiado')}catch(e){toast('Não foi possível copiar')}t.remove()}
+function send(){const t=cart.reduce((a,i)=>a+i.u*i.n,0);let m=`Olá! Gostaria de fazer um pedido na ${D.config.name}.\n\nPedido:\n\n`;
+ cart.forEach(i=>{m+=`• ${i.name}${i.size?' '+i.size:''}\n`;if(i.add.length)m+=`Complementos:\n${i.add.join('\n')}\n`;if(i.obs)m+=`Obs: ${i.obs}\n`;m+=`Quantidade: ${i.n}\nValor: ${R(i.u*i.n)}\n\n`});
+ m+=`Total do Pedido: ${R(t)}\n\nNome: ${I.nm}\n\nEndereço: ${I.ad}\n\nForma de pagamento: ${I.pg}`;
+ const u=`https://wa.me/${D.config.whatsapp}?text=${encodeURIComponent(m)}`;WM=m;
+ const a=document.createElement('a');a.href=u;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
+ $('#wf').innerHTML=`<small>Se o WhatsApp não abriu:</small> <a href="${u}" target="_blank" rel="noopener" style="color:var(--p);font-weight:700">Abrir WhatsApp</a> · <a href="#" onclick="cp();return false" style="color:var(--p);font-weight:700">Copiar pedido</a>`}
+
+document.querySelectorAll('[data-i]').forEach(e=>e.insertAdjacentHTML('afterbegin',ic(e.dataset.i,24)));$('#logo').innerHTML=logo(DEF.config.name);
+(async()=>{try{const r=await fetch('data.json?'+Date.now());if(!r.ok)throw 0;D=await r.json()}catch(e){D=DEF}const c=D.config;document.title=c.name;$('#logo').innerHTML=logo(c.name);
+ $('#menu').innerHTML=`<h3>Categorias</h3><a onclick="go(null)">${ic('home',18)} Início</a>${D.categories.map(x=>`<a onclick="go('${x.id}')">${E(x.name)}</a>`).join('')}`;
+ $('#bn').innerHTML=D.banners.map((x,i)=>`<div class="sl${i?'':' on'}" style="${x.img?`background-image:linear-gradient(90deg,#2d0a4ecc,#0000),url(${E(x.img)})`:''}"><h1>${E(x.title)}</h1><p>${E(x.text)}</p></div>`).join('');
+ let i=0;tm=setInterval(()=>{const s=document.querySelectorAll('.sl');if(s.length<2)return;s[i].classList.remove('on');i=(i+1)%s.length;s[i].classList.add('on')},4500);
+ $('#extra').innerHTML=`<div class="wrap"><h2>Avaliações</h2><div class="rv">${D.reviews.map(r=>`<div class="rc"><div class="st">${ic('star',16).repeat(r.s|0)}</div><p>“${E(r.t)}”</p><small>${E(r.n)}</small></div>`).join('')}</div><h2>Sobre Nós</h2><p>${E(c.about)}</p></div><footer><div class="lgo" style="justify-content:center">${logo(c.name)}</div><p><i>${E(c.slogan)}</i></p><p>${ic('wa',18)}<a href="https://wa.me/${E(c.whatsapp)}">WhatsApp</a></p><p>${ic('pin',18)}${E(c.address)}</p><p>${ic('clock',18)}${E(c.hours)}</p>${c.instagram?`<p>${ic('ig',18)}<a href="${E(c.instagram)}">Instagram</a></p>`:''}<p style="margin-top:16px"><a href="#admin" onclick="adminOn();return false" style="opacity:.75;font-size:13px;padding:8px;display:inline-flex;align-items:center;gap:6px">${ic('lock',15)}Área do administrador</a></p></footer>`;
+ render();sv()})();
+
+
+const H='fd5ac8c7eb01c78ef33fbbce52d4dcafff051bc39562944ea847c320173c4f5a';
+let G=JSON.parse(localStorage.gh||'{}'),AD,sha,tab='products';
+const enc=s=>btoa(unescape(encodeURIComponent(s))),dec=s=>decodeURIComponent(escape(atob(s.replace(/\n/g,'')))),
+pairs=v=>v.split('\n').map(l=>l.split('=')).filter(a=>a[0].trim()).map(a=>({n:a[0].trim(),p:parseFloat((a[1]||'0').replace(',','.'))||0})),
+O=(t,i)=>i<0?AD[t]:AD[t][i],
+opts=n=>n=='SEC'?Object.entries(SEC):AD.groups.map(g=>[g.id,g.name]);
+async function api(p,o={}){const r=await fetch(`https://api.github.com/repos/${G.repo}/contents/${p}`,{...o,headers:{Authorization:'Bearer '+G.token,Accept:'application/vnd.github+json'}}),j=await r.json();if(!r.ok)throw Error(j.message);return j}
+async function hash(p){const e=new TextEncoder(),k=await crypto.subtle.importKey('raw',e.encode(p),'PBKDF2',false,['deriveBits']),b=await crypto.subtle.deriveBits({name:'PBKDF2',salt:e.encode('vitoria-acai-v1'),iterations:150000,hash:'SHA-256'},k,256);return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function load(){await api('');try{const r=await api('data.json');sha=r.sha;AD=JSON.parse(dec(r.content))}catch(e){if(e.message!='Not Found')throw e;AD=JSON.parse(JSON.stringify(DEF));sha=undefined}}
+
+async function view(){if(!sessionStorage.ok)return pw();if(!G.token)return tk();
+ if(!AD){try{await load()}catch(e){alert('Erro ao conectar: '+e.message);localStorage.removeItem('gh');G={};return tk()}}draw()}
+function pw(){$('#app').innerHTML=`<div class="box" id="lg"><h2>Painel Administrativo</h2><input id="p" type="password" placeholder="Senha do painel" onkeydown="event.key=='Enter'&&lp()"><button class="cta" onclick="lp()">Entrar</button></div>`}
+async function lp(){try{if(await hash($('#p').value)==H){sessionStorage.ok=1;view()}else alert('Senha incorreta.')}catch(e){alert('Este navegador não conseguiu validar a senha. Abra o site pelo Chrome ou Safari. ('+e.message+')')}}
+function tk(){$('#app').innerHTML=`<div class="box" id="lg"><h2>Conectar ao GitHub</h2><input id="t" type="password" placeholder="Token do GitHub" onkeydown="event.key=='Enter'&&lt()"><button class="cta" onclick="lt()">Conectar</button></div>`}
+async function lt(){G={token:$('#t').value.trim()};try{const m=location.hostname.match(/^(.+)\.github\.io$/),s=location.pathname.split('/')[1],g=m?(m[1]+'/'+(s&&!s.includes('.')?s:m[1]+'.github.io')).toLowerCase():'',L=await(await fetch('https://api.github.com/user/repos?per_page=100',{headers:{Authorization:'Bearer '+G.token}})).json();if(!Array.isArray(L))throw Error(L.message||'token inválido');const x=L.find(y=>y.full_name.toLowerCase()==g)||(L.length==1?L[0]:null);if(!x)throw Error('não achei o repositório do site com esse token');G.repo=x.full_name;await load();localStorage.gh=JSON.stringify(G);view()}catch(e){G={};alert('Não foi possível conectar: '+e.message)}}
+function out(){localStorage.removeItem('gh');sessionStorage.clear();location.reload()}
+
+const T={
+products:{l:'Produtos',k:'products',n:()=>({id:'p'+Date.now(),name:'Novo produto',cat:AD.categories[0]?.id,desc:'',ing:'',obs:'',price:0,img:'',stock:99,sizes:[],groups:[],sec:[]}),
+ f:[['name','Nome'],['cat','Categoria','cat'],['desc','Descrição curta','a'],['ing','Ingredientes'],['obs','Observações'],['price','Preço (se não tiver tamanhos)','n'],['stock','Estoque (0 = esgotado)','n'],['img','Foto','img'],['sizes','Tamanhos (um por linha, ex: 500ml=20)','sz'],['groups','Complementos disponíveis','chk','groups'],['sec','Aparece em','chk','SEC']]},
+categories:{l:'Categorias',k:'categories',n:()=>({id:'c'+Date.now(),name:'Nova categoria'}),f:[['name','Nome']]},
+groups:{l:'Complementos',k:'groups',n:()=>({id:'g'+Date.now(),name:'Novo grupo',max:0,items:[]}),f:[['name','Nome do grupo (ex: Frutas)'],['max','Máximo de escolhas (0 = ilimitado)','n'],['items','Itens (um por linha, ex: Morango=2)','sz']]},
+banners:{l:'Banners',k:'banners',n:()=>({img:'',title:'Novo banner',text:''}),f:[['img','Imagem','img'],['title','Título'],['text','Texto']]},
+reviews:{l:'Avaliações',k:'reviews',n:()=>({n:'Cliente',t:'',s:5}),f:[['n','Nome'],['t','Comentário','a'],['s','Estrelas (1 a 5)','n']]},
+config:{l:'Config',k:'config',f:[['name','Nome da empresa'],['slogan','Slogan'],['whatsapp','WhatsApp (só números, com 55: 5521979946790)'],['address','Endereço'],['hours','Horário de funcionamento'],['about','Sobre Nós','a'],['instagram','Link do Instagram'],['hideSoldOut','Ocultar produtos esgotados','ck']]}};
+
+function F(o,[k,l,ty,src],i){const t=T[tab].k,v=o[k],a=`'${t}',${i},'${k}','${ty||''}'`,ev=`onchange="S(${a},this.${ty=='ck'?'checked':'value'})"`;let x;
+ if(ty=='a')x=`<textarea rows="3" ${ev}>${E(v)}</textarea>`;
+ else if(ty=='sz')x=`<textarea rows="4" ${ev}>${E((v||[]).map(s=>s.n+'='+s.p).join('\n'))}</textarea>`;
+ else if(ty=='cat')x=`<select ${ev}>${AD.categories.map(c=>`<option value="${c.id}" ${c.id==v?'selected':''}>${E(c.name)}`).join('')}</select>`;
+ else if(ty=='img')x=`<input value="${E(v)}" ${ev}><input type="file" accept="image/*" onchange="U('${t}',${i},'${k}',this)">`;
+ else if(ty=='chk')x=`<div class="chk">${opts(src).map(([id,n])=>`<label><input type="checkbox" ${(v||[]).includes(id)?'checked':''} onchange="C('${t}',${i},'${k}','${id}',this.checked)">${E(n)}</label>`).join('')}</div>`;
+ else if(ty=='ck')x=`<input type="checkbox" ${v?'checked':''} ${ev}>`;
+ else x=`<input ${ty=='n'?'type="number" step="any"':''} value="${E(v)}" ${ev}>`;
+ return `<div class="f"><b>${l}</b>${x}</div>`}
+function S(t,i,k,ty,v){O(t,i)[k]=ty=='n'?parseFloat(String(v).replace(',','.'))||0:ty=='sz'?pairs(v):v}
+function C(t,i,k,id,on){const o=O(t,i),a=(o[k]||[]).filter(x=>x!=id);if(on)a.push(id);o[k]=a}
+function X(i){if(confirm('Excluir este item?')){AD[T[tab].k].splice(i,1);draw()}}
+function A(){AD[T[tab].k].unshift(T[tab].n());draw()}
+async function up(f){const im=await createImageBitmap(f),s=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+ const n='img/'+Date.now()+'.jpg';await api(n,{method:'PUT',body:JSON.stringify({message:'Foto enviada pelo painel',content:c.toDataURL('image/jpeg',.82).split(',')[1]})});return n}
+async function U(t,i,k,el){if(!el.files[0])return;try{O(t,i)[k]=await up(el.files[0]);draw()}catch(e){alert('Erro ao enviar a foto: '+e.message)}}
+async function save(){try{const r=await api('data.json',{method:'PUT',body:JSON.stringify({message:'Atualização pelo painel',content:enc(JSON.stringify(AD,null,1)),sha})});sha=r.content.sha;alert('Publicado! O site atualiza em cerca de 1 minuto.')}catch(e){alert('Erro ao publicar: '+e.message)}}
+function draw(){const t=T[tab],c=tab=='config',L=c?[AD.config]:AD[t.k];
+ $('#app').innerHTML=`<header><b id="logo">${ic('cog',22)} Painel</b><a href="#" onclick="adminOff();return false" style="color:#fff;font-size:13px;display:inline-flex;align-items:center;gap:6px">${ic('back',16)} Voltar ao site</a><button class="cta" onclick="save()">Publicar</button></header><div class="wrap"><div class="tabs">${Object.keys(T).map(k=>`<button class="${k==tab?'on':''}" onclick="tab='${k}';draw()">${T[k].l}</button>`).join('')}</div>${c?'':`<button class="cta" onclick="A()">+ Adicionar</button>`}${L.map((o,i)=>`<div class="box">${t.f.map(f=>F(o,f,c?-1:i)).join('')}${c?'':`<button class="del" onclick="X(${i})">Excluir</button>`}</div>`).join('')}<button class="del" onclick="out()">Sair e remover token deste aparelho</button></div>`}
+function adminOn(){document.body.classList.add('adm');scrollTo(0,0);view().catch(e=>alert('Erro ao abrir o painel: '+e.message))}function adminOff(){location.href=location.pathname}if(location.hash=='#admin')adminOn();
+</script>
+</body></html>
