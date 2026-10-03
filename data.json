@@ -53,14 +53,9 @@
  ],
  "banners": [
   {
-   "img": "",
-   "title": "O melhor açaí da região",
-   "text": "Monte o seu e peça pelo WhatsApp"
-  },
-  {
-   "img": "",
-   "title": "Promoções do dia",
-   "text": "Confira as ofertas de hoje"
+   "img": "img/1791047677526.jpg",
+   "title": "",
+   "text": ""
   }
  ],
  "groups": [
@@ -156,203 +151,18 @@
  ],
  "products": [
   {
-   "id": "p1",
-   "name": "Açaí Tradicional",
+   "id": "p1791047652207",
+   "name": "Novo produto",
    "cat": "c1",
-   "desc": "Açaí cremoso batido na hora.",
-   "ing": "Açaí, guaraná",
+   "desc": "",
+   "ing": "",
    "obs": "",
    "price": 0,
-   "img": "",
-   "stock": 99,
-   "sizes": [
-    {
-     "n": "300ml",
-     "p": 14
-    },
-    {
-     "n": "500ml",
-     "p": 20
-    },
-    {
-     "n": "700ml",
-     "p": 26
-    },
-    {
-     "n": "1L",
-     "p": 34
-    }
-   ],
-   "groups": [
-    "fr",
-    "co",
-    "cm"
-   ],
-   "sec": [
-    "mais"
-   ]
-  },
-  {
-   "id": "p2",
-   "name": "Açaí Premium",
-   "cat": "c2",
-   "desc": "Mais cremoso, com leite em pó.",
-   "ing": "Açaí, guaraná, leite em pó",
-   "obs": "",
-   "price": 0,
-   "img": "",
-   "stock": 99,
-   "sizes": [
-    {
-     "n": "300ml",
-     "p": 17
-    },
-    {
-     "n": "500ml",
-     "p": 23
-    },
-    {
-     "n": "700ml",
-     "p": 29
-    },
-    {
-     "n": "1L",
-     "p": 37
-    }
-   ],
-   "groups": [
-    "fr",
-    "co",
-    "cm"
-   ],
-   "sec": [
-    "mais",
-    "combo"
-   ]
-  },
-  {
-   "id": "p3",
-   "name": "Açaí Gourmet",
-   "cat": "c3",
-   "desc": "Açaí com creme de ninho e frutas.",
-   "ing": "Açaí, creme de ninho, frutas",
-   "obs": "",
-   "price": 0,
-   "img": "",
-   "stock": 99,
-   "sizes": [
-    {
-     "n": "300ml",
-     "p": 19
-    },
-    {
-     "n": "500ml",
-     "p": 25
-    },
-    {
-     "n": "700ml",
-     "p": 31
-    },
-    {
-     "n": "1L",
-     "p": 39
-    }
-   ],
-   "groups": [
-    "fr",
-    "co",
-    "cm"
-   ],
-   "sec": [
-    "novo"
-   ]
-  },
-  {
-   "id": "p4",
-   "name": "Monte Seu Açaí",
-   "cat": "c1",
-   "desc": "Escolha o tamanho e capriche nos adicionais.",
-   "ing": "Açaí, guaraná",
-   "obs": "",
-   "price": 0,
-   "img": "",
-   "stock": 99,
-   "sizes": [
-    {
-     "n": "300ml",
-     "p": 14
-    },
-    {
-     "n": "500ml",
-     "p": 20
-    },
-    {
-     "n": "700ml",
-     "p": 26
-    },
-    {
-     "n": "1L",
-     "p": 34
-    }
-   ],
-   "groups": [
-    "fr",
-    "co",
-    "cm"
-   ],
-   "sec": [
-    "monte"
-   ]
-  },
-  {
-   "id": "p5",
-   "name": "Milk-shake de Ninho",
-   "cat": "c6",
-   "desc": "Gelado e cremoso, 400ml.",
-   "ing": "Sorvete, leite, leite ninho",
-   "obs": "",
-   "price": 16,
-   "img": "",
-   "stock": 99,
-   "sizes": [],
-   "groups": [
-    "co"
-   ],
-   "sec": [
-    "promo"
-   ]
-  },
-  {
-   "id": "p6",
-   "name": "Bolo de Chocolate",
-   "cat": "c7",
-   "desc": "Fatia generosa com cobertura.",
-   "ing": "Chocolate, ovos, farinha",
-   "obs": "",
-   "price": 12,
    "img": "",
    "stock": 99,
    "sizes": [],
    "groups": [],
-   "sec": [
-    "novo"
-   ]
-  },
-  {
-   "id": "p7",
-   "name": "Torta de Limão",
-   "cat": "c8",
-   "desc": "Fatia de torta gelada.",
-   "ing": "Limão, leite condensado, biscoito",
-   "obs": "",
-   "price": 10,
-   "img": "",
-   "stock": 99,
-   "sizes": [],
-   "groups": [],
-   "sec": [
-    "combo"
-   ]
+   "sec": []
   }
  ],
  "reviews": [
