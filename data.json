@@ -152,17 +152,19 @@
  "products": [
   {
    "id": "p1791047652207",
-   "name": "Novo produto",
+   "name": "Açaí 200ml",
    "cat": "c1",
    "desc": "",
    "ing": "",
    "obs": "",
-   "price": 0,
+   "price": 18.99,
    "img": "",
-   "stock": 99,
+   "stock": 70,
    "sizes": [],
    "groups": [],
-   "sec": []
+   "sec": [
+    "mais"
+   ]
   }
  ],
  "reviews": [
